@@ -58,17 +58,14 @@ export default function UpperMenu() {
           >
             <MenuIcon />
           </IconButton> */}
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <img src="/static/images/azurlanelogo.webp" alt="azurlane logo" height= '48px'/>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-            >
-              스탯 기록기
-            </Typography>
-          </Box>
+          <Typography
+            variant="h6"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            스탯 기록기
+          </Typography>
         </Toolbar>
       </AppBar>
       {/* <Drawer open={open} onClose={() => { toggleDrawer(false) }}>

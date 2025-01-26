@@ -64,7 +64,7 @@ export default function UpperMenu() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            스탯 기록기
+            벽람항로 스탯 기록기
           </Typography>
         </Toolbar>
       </AppBar>

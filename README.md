@@ -9,4 +9,5 @@
   4. 스탯작 한눈에 모아보기<br>
 
 <h3>라이선스<h3>
+
 이 페이지의 모든 이미지, json 데이터는 <a href="https://azurlane.koumakan.jp/wiki/Azur_Lane_Wiki">https://azurlane.koumakan.jp/wiki/Azur_Lane_Wiki</a>에서 가져왔으며 CC BY-NC 4.0 라이센스로 보호되고 있습니다

@@ -2,7 +2,7 @@ import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
 import { createTheme, ThemeProvider } from "@mui/material";
 
-import Main from './main';
+import Main from '../components/main';
 import '../css/index.css';
 
 

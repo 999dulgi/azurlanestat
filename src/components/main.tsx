@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { TableVirtuoso, TableComponents } from 'react-virtuoso';
 import { initDB, useIndexedDB } from 'react-indexed-db-hook';
 import { FormGroup, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import { Button, IconButton } from '@mui/material';
 import { Box, Paper } from '@mui/material';
 import { Tooltip } from '@mui/material';
 import { Typography } from '@mui/material';
@@ -12,8 +11,8 @@ import { Fab } from '@mui/material';
 
 import FilterListIcon from '@mui/icons-material/FilterList';
 
-import UpperMenu from '../components/UpperMenu';
-import FilterDialog from '../components/FilterDialog';
+import UpperMenu from './UpperMenu';
+import FilterDialog from './FilterDialog';
 import stat from '../json/stats.json';
 import { DBconfig } from '../DBconfig';
 import '../css/main.css';
@@ -333,13 +332,17 @@ export default function Main(props: any) {
 
   useEffect(() => {
     (() => {
-      window.addEventListener("beforeunload", handleUnload);
+      if (typeof window !== "undefined") {
+        window.addEventListener("beforeunload", handleUnload);
+      }
     })();
 
     return (() => {
-      window.removeEventListener("beforeunload", handleUnload);
+      if (typeof window !== "undefined") {
+        window.removeEventListener("beforeunload", handleUnload);
+      }
     });
-  })
+  }, [])
 
   const handleUnload = (e: BeforeUnloadEvent) => {
     e.preventDefault()
@@ -374,7 +377,7 @@ export default function Main(props: any) {
           style={{ minWidth: 1600, backgroundColor: '#181a1b' }}
         />
       </Box>
-      <Fab size="medium" aria-label="filter" sx={{ position: 'absolute', bottom: 32, right: 32, backgroundColor: '#181a1b', "&:hover": {bgcolor: '#34393c'} }} onClick={() => handleOpen()}>
+      <Fab size="medium" aria-label="filter" sx={{ position: 'absolute', bottom: 32, right: 32, backgroundColor: '#181a1b', "&:hover": { bgcolor: '#34393c' } }} onClick={() => handleOpen()}>
         <FilterListIcon sx={{ color: 'rgba(232, 230, 227, 0.87)' }} />
       </Fab>
       <FilterDialog open={open} handleClose={() => handleClose()} changeData={changeFilter} />

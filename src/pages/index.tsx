@@ -1,8 +1,9 @@
 import * as React from "react"
 import type { HeadFC, PageProps } from "gatsby"
+import loadable from '@loadable/component';
 import { createTheme, ThemeProvider } from "@mui/material";
 
-import Main from '../components/main';
+const Main = loadable(() => import('../components/main'))
 import '../css/index.css';
 
 

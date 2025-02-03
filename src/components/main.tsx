@@ -321,7 +321,6 @@ function rowContent(_index: number, row: Data, shipDB: DBData[], setShipDB: Reac
 initDB(DBconfig);
 
 export default function Main(props: any) {
-
   const [open, setOpen] = useState(false);
   const [shipDB, setShipDB] = useState<DBData[]>([])
   const DB = useIndexedDB('shiplevel');
@@ -331,31 +330,33 @@ export default function Main(props: any) {
   }, [])
 
   useEffect(() => {
+    const handleUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault()
+  
+      shipDB.map((value) => {
+        if (value.id === undefined) {
+          DB.add({ "shipname": value.shipname, "hasShip": value.hasShip, "isFull": value.isFull, "is120": value.is120 });
+        }
+        else {
+          DB.update({ "shipname": value.shipname, "hasShip": value.hasShip, "isFull": value.isFull, "is120": value.is120, "id": value.id });
+        }
+      })
+    };
+    
     (() => {
-      if (typeof window !== "undefined") {
+      if (typeof window !== 'undefined') {
         window.addEventListener("beforeunload", handleUnload);
       }
     })();
 
     return (() => {
-      if (typeof window !== "undefined") {
+      if (typeof window !== 'undefined') {
         window.removeEventListener("beforeunload", handleUnload);
       }
     });
   }, [])
 
-  const handleUnload = (e: BeforeUnloadEvent) => {
-    e.preventDefault()
-
-    shipDB.map((value) => {
-      if (value.id === undefined) {
-        DB.add({ "shipname": value.shipname, "hasShip": value.hasShip, "isFull": value.isFull, "is120": value.is120 });
-      }
-      else {
-        DB.update({ "shipname": value.shipname, "hasShip": value.hasShip, "isFull": value.isFull, "is120": value.is120, "id": value.id });
-      }
-    })
-  };
+  
 
   const handleOpen = () => {
     setOpen(true);
@@ -380,7 +381,7 @@ export default function Main(props: any) {
       <Fab size="medium" aria-label="filter" sx={{ position: 'absolute', bottom: 32, right: 32, backgroundColor: '#181a1b', "&:hover": { bgcolor: '#34393c' } }} onClick={() => handleOpen()}>
         <FilterListIcon sx={{ color: 'rgba(232, 230, 227, 0.87)' }} />
       </Fab>
-      <FilterDialog open={open} handleClose={() => handleClose()} changeData={changeFilter} />
+      <FilterDialog open={open} handleClose={handleClose} changeData={changeFilter} />
     </Box>
   );
 }

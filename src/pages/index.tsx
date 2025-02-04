@@ -27,7 +27,7 @@ export const Head = () => {
   return (
     <>
     <title>벽람항로 스탯 기록기</title>
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'" />
+    <meta httpEquiv="Content-Security-Policy" content="default-src 'unsafe-eval' 'self' 'unsafe-inline' https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff" />\
     <body className="init-body"></body>
     </>
   )

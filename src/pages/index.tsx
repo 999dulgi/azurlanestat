@@ -27,6 +27,7 @@ export const Head = () => {
   return (
     <>
     <title>벽람항로 스탯 기록기</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'" />
     <body className="init-body"></body>
     </>
   )
